@@ -1,0 +1,1 @@
+export {default as WTag} from "./WTag.vue"
