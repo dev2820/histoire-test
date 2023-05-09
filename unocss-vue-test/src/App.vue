@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import WTag from "./components/WTag/WTag.vue";
+import FancyList, { type Item } from "./components/FancyList.vue";
 import { ref } from "vue";
-import { Theme } from "./components/WTag/types";
-console.log("app setup");
-const text = "hi";
-const theme = ref<Theme>("light");
 
-setTimeout(() => {
-  theme.value = "dark";
-  console.log("change");
-}, 5000);
+type ListItem = Item<{ item: string }>;
+
+const list: ListItem[] = [
+  { id: "0", item: "a" },
+  { id: "1", item: "b" },
+  { id: "2", item: "c" },
+];
 </script>
 
 <template>
-  <w-tag :text="text" :theme="theme"></w-tag>
+  <fancy-list :list="list">
+    <template v-slot="prop: ListItem">
+      {{ prop.item }}
+    </template>
+  </fancy-list>
 </template>
 
 <style scoped></style>
